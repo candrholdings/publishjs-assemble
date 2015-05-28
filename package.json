@@ -1,0 +1,30 @@
+{
+  "name": "publishjs-assemble",
+  "version": "0.0.1-dev",
+  "description": "Assemble HTML files with PublishJS",
+  "keywords": [
+    "assemble",
+    "grunt",
+    "gulp",
+    "publishjs"
+  ],
+  "license": "MIT",
+  "email": "william.wong@candrholdings.com",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/candrholdings/publishjs-assemble.git"
+  },
+  "scripts": {
+    "test": "vows src/test/*-test.js --spec"
+  },
+  "dependencies": {
+    "async-linq": "^1.0.2",
+    "node-jsrender": "^1.0.6",
+    "publishjs": "file:..\\core"
+  },
+  "devDependencies": {
+    "async": "^1.0.0",
+    "vows": "^0.8.1"
+  }
+}
