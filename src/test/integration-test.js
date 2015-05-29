@@ -2,7 +2,7 @@
     'use strict';
 
     require('vows').describe('Integration test').addBatch({
-        'When minifying a CSS file': {
+        'When assembling a HTML file': {
             topic: function () {
                 var callback = this.callback;
 
@@ -32,7 +32,7 @@
                 }, callback);
             },
 
-            'should returns a minified copy': function (topic) {
+            'should returns an assembled copy': function (topic) {
                 var input = linq(topic.input.all).select(function (buffer) {
                         return buffer.toString().replace(/\r/g, '');
                     }).run(),
