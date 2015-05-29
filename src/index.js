@@ -19,7 +19,9 @@
             return !isUnderLayoutPath(filename);
         }).run();
 
-        outputs = assembleInputs;
+        linq(assembleInputs).select(function (entry, filename) {
+            outputs[filename] = entry;
+        }).run();
 
         Object.getOwnPropertyNames(inputs.all).forEach(function (filename) {
             isUnderLayoutPath(filename) && jsrender.loadString(filename.substr(9), inputs.all[filename].toString());
