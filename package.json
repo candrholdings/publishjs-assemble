@@ -21,7 +21,7 @@
   "dependencies": {
     "async-linq": "^1.0.2",
     "node-jsrender": "^1.0.6",
-    "publishjs": "file:..\\core"
+    "publishjs": "git:git@github.com:candrholdings/publishjs.git"
   },
   "devDependencies": {
     "async": "^1.0.0",
