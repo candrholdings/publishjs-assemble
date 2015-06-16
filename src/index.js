@@ -9,6 +9,10 @@
         var that = this,
             assembleInputs;
 
+        inputs.deleted.forEach(function (filename) {
+            outputs[filename] = null;
+        });
+
         if (Object.getOwnPropertyNames(inputs.newOrChanged).some(isUnderLayoutPath)) {
             assembleInputs = inputs.all;
         } else {
