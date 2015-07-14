@@ -34,17 +34,25 @@
         Object.getOwnPropertyNames(assembleInputs).forEach(function (filename) {
             var input = assembleInputs[filename],
                 html = input.toString(),
-                content = parseContent(html),
-                layoutName = content.__layout;
+                content;
+
+            try {
+                content = parseContent(html);
+            } catch (ex) {
+                that.log('Failed to parse content ' + filename + ' due to ' + ex.message);
+                throw ex;
+            }
+
+            var layoutName = content.__layout;
 
             if (!layoutName) {
-                throw new Error('Layout file not defined as "__layout" in "' + filename + '"');
+                throw new Error(filename + ' should define layout file as "__layout"');
             }
 
             var render = jsrender.render[layoutName];
 
             if (!render) {
-                return callback(new Error('Cannot find layout "' + layoutName + '" for "' + filename + '"'));
+                throw new Error('Layout ' + layoutName + ' does not exists, as defined in ' + filename);
             }
 
             var output = new Buffer(render(content));
@@ -52,7 +60,7 @@
             outputs[filename] = output;
 
             that.log([
-                'Assemble: Assembling ',
+                'Assembling ',
                 filename,
                 ' (',
                 number.bytes(input.length),
